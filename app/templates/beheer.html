@@ -1,0 +1,36 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Beheer spreuken en citaten</h1>
+	<form action="" method="post" name="spreuk">
+		{{ form.hidden_tag() }}
+		<table>
+			<tr>
+				<td>Citaat:</td>
+				<td>{{ form.body(size=60, maxlength=140) }}</td>
+			</tr>
+			{% for error in form.body.errors %}
+			<span style="color: red;">[{{ error }}]</span><br>
+			{% endfor %}
+			<tr>
+				<td>Auteur:</td>
+				<td>{{ form.auteur(size=30, maxlength=32) }}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Add"</td>
+			</tr>
+		</table>
+	</form>
+	<table>
+		<tr>
+			<td>Citaat</td>
+			<td>Auteur</td>
+			<td>Categorie</td>
+		</tr>
+	{% for spreuk in spreuken %}
+		{% include 'spreuk.html' %}
+	{% endfor %}
+	</table>
+{% endblock %}
