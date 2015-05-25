@@ -8,14 +8,14 @@
 		<table>
 			<tr>
 				<td>Citaat:</td>
-				<td>{{ form.body(size=60, maxlength=140) }}</td>
+				<td>{{ form.body(size=140, maxlength=140) }}</td>
 			</tr>
 			{% for error in form.body.errors %}
 			<span style="color: red;">[{{ error }}]</span><br>
 			{% endfor %}
 			<tr>
 				<td>Auteur:</td>
-				<td>{{ form.auteur(size=30, maxlength=32) }}</td>
+				<td>{{ form.auteur(size=32, maxlength=32) }}</td>
 			</tr>
 			<tr>
 				<td></td>
