@@ -8,7 +8,7 @@
 		<table>
 			<tr>
 				<td>Citaat:</td>
-				<td>{{ form.body(size=140, maxlength=140) }}</td>
+				<td>{{ form.body(cols="60", rows="3") }}</td>
 			</tr>
 			{% for error in form.body.errors %}
 			<span style="color: red;">[{{ error }}]</span><br>
@@ -16,6 +16,10 @@
 			<tr>
 				<td>Auteur:</td>
 				<td>{{ form.auteur(size=32, maxlength=32) }}</td>
+			</tr>
+			<tr>
+				<td>Soort:</td>
+				<td>{{ form.soort }}</td>
 			</tr>
 			<tr>
 				<td></td>
