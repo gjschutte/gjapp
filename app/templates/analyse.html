@@ -1,0 +1,21 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Gegevens computer</h1>
+	<p>
+	<table>
+		<tr>
+			<td>Browser:</td>
+			<td>{{ user_agent.browser.family }}, version {{ user_agent.browser.version_string }}</td>
+		</tr>
+		<tr>
+			<td>Operating system:</td>
+			<td>{{ user_agent.os.family }}, version {{ user_agent.os.version_string }}</td>
+		</tr>
+		<tr>
+			<td>Device:</td>
+			<td>{{ user_agent.device.family }}</td>
+		</tr>
+	</table>		
+{% endblock %}
