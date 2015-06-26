@@ -1,10 +1,19 @@
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.menu import current_menu
+from flask.ext import menu
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
+menu.Menu(app=app)
+
+# Import modules
+# from .home import home
+from app.home.views import mod as homeModule
+from app.analyse.views import mod as analyseModule
+from app.beheer.views import mod as beheerModule
 
 if not app.debug and os.environ.get('HEROKU') is None:
 	import logging
@@ -23,4 +32,9 @@ if os.environ.get('HEROKU') is not None:
 	app.logger.setLevel(logging.INFO)
 	app.logger.info('gjapp startup')
 
-from app import views, models
+from app import models
+
+# Register the blueprints
+app.register_blueprint(homeModule)
+app.register_blueprint(analyseModule)
+app.register_blueprint(beheerModule)
