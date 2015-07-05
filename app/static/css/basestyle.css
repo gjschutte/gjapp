@@ -2,6 +2,27 @@ body{
 	margin: 0;
 	padding: 0;
 	font-size: 15px;
+	text-align: center;
+}
+
+div#main_container{
+	margin: 0 auto 0 auto;
+	width: 750px;
+	text-align: left;
+}
+
+div#box_header{
+	width: 100%;
+}
+
+div#box_left{
+	float: left;
+	width: 15%;
+}
+
+div#box_right{
+	float: left;
+	width: 85%;
 }
 
 nav {

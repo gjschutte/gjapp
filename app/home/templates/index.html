@@ -2,10 +2,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+	<div id="box_left"></div>
+	<div id="box_right">
 	<h1>Hi, welcome</h1>
 	<p>
 	{{ spreuk.body }} - {{ spreuk.auteur }}
 	</p>
-	<a href="{{ url_for('beheer.beheer') }}">Beheer</a>
-	<a href="{{ url_for('analyse.analyse') }}">Gegevens computer</a>
+	</div>
 {% endblock %}

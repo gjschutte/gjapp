@@ -2,6 +2,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+	<div id="box_left"></div>
+	<div id="box_right">
 	<h1>Beheer spreuken en citaten</h1>
 	<form action="" method="post" name="spreuk">
 		{{ form.hidden_tag() }}
@@ -37,4 +39,5 @@
 		{% include 'spreuk.html' %}
 	{% endfor %}
 	</table>
+	</div>
 {% endblock %}

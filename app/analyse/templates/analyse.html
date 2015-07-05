@@ -2,6 +2,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+	<div id="box_left"></div>
+	<div id="box_right">
 	<h1>Gegevens computer</h1>
 	<p>
 	<table>
@@ -17,5 +19,6 @@
 			<td>Device:</td>
 			<td>{{ user_agent.device.family }}</td>
 		</tr>
-	</table>		
+	</table>
+	</div>
 {% endblock %}
