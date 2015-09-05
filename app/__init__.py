@@ -14,6 +14,8 @@ menu.Menu(app=app)
 from app.home.views import mod as homeModule
 from app.analyse.views import mod as analyseModule
 from app.beheer.views import mod as beheerModule
+from app.weather.views import mod as weatherModule
+from app.weather.views import mod2 as forecastModule
 
 if not app.debug and os.environ.get('HEROKU') is None:
 	import logging
@@ -38,3 +40,5 @@ from app import models
 app.register_blueprint(homeModule)
 app.register_blueprint(analyseModule)
 app.register_blueprint(beheerModule)
+app.register_blueprint(weatherModule)
+app.register_blueprint(forecastModule)

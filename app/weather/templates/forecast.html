@@ -1,0 +1,44 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<div id="box_left"></div>
+	<div id="box_right">
+	<h1>Actual Weather</h1>
+	<p>
+	<table>
+		<tr>
+			<td>Place</td>
+			<td>{{ w_forecast['name'] }}</td>
+		</tr>
+		<tr>
+			<td>Temperature</td>
+			<td>{{ w_forecast['main']['temp'] }} </td>
+		<tr>
+			<td>Description</td>
+			<td>
+				{% set pic_url = 'http://openweathermap.org/img/w/' + w_forecast['weather'][0]['icon'] + '.png' %}
+				<img src="{{ pic_url }}"> {{ w_forecast['weather'][0]['description'] }}
+			</td>
+		</tr>
+		<tr>
+			<td>Wind</td>
+			<td>{{ w_forecast['wind']['beaufort'] }} bft, 
+				{{ w_forecast['wind']['dir'] }}</td>
+		</tr>
+		<tr>
+			<td>Humidity</td>
+			<td>{{ w_forecast['main']['humidity'] }}%</td>
+		</tr>
+		<tr>
+			<td>Pressure</td>
+			<td>{{ w_forecast['main']['pressure'] }}</td>
+		</tr>
+		<tr>
+			<td>Rainfall</td>
+			<td> {{ w_forecast['rainfall'] }} </td>
+		</tr>
+		
+	</table>
+	</div>
+{% endblock %}
