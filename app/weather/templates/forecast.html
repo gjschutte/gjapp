@@ -4,40 +4,32 @@
 {% block content %}
 	<div id="box_left"></div>
 	<div id="box_right">
-	<h1>Actual Weather</h1>
+	<h1>14-days weather forecast</h1>
 	<p>
 	<table>
 		<tr>
 			<td>Place</td>
-			<td>{{ w_forecast['name'] }}</td>
+			<td>{{ w_forecast['city']['name'] }}</td>
 		</tr>
+		<br>
 		<tr>
-			<td>Temperature</td>
-			<td>{{ w_forecast['main']['temp'] }} </td>
-		<tr>
-			<td>Description</td>
-			<td>
-				{% set pic_url = 'http://openweathermap.org/img/w/' + w_forecast['weather'][0]['icon'] + '.png' %}
-				<img src="{{ pic_url }}"> {{ w_forecast['weather'][0]['description'] }}
-			</td>
+			<td>Date</td>
+			<td>Minimum</td>
+			<td>Maximum</td>
 		</tr>
-		<tr>
-			<td>Wind</td>
-			<td>{{ w_forecast['wind']['beaufort'] }} bft, 
-				{{ w_forecast['wind']['dir'] }}</td>
-		</tr>
-		<tr>
-			<td>Humidity</td>
-			<td>{{ w_forecast['main']['humidity'] }}%</td>
-		</tr>
-		<tr>
-			<td>Pressure</td>
-			<td>{{ w_forecast['main']['pressure'] }}</td>
-		</tr>
-		<tr>
-			<td>Rainfall</td>
-			<td> {{ w_forecast['rainfall'] }} </td>
-		</tr>
+		{% for line in w_forecast['list'] %}
+			<tr>
+				<td>{{ line['date_txt'] }}</td>
+				<td><center>{{ line['temp']['min_round'] }}</center></td>
+				<td><center>{{ line['temp']['max_round'] }}</center></td>
+				<td>
+					{% set pic_url = 'http://openweathermap.org/img/w/' + 
+					line['weather'][0]['icon'] + '.png' %}
+					<img src="{{ pic_url }}"> 
+				</td>
+				<td>{{ line['weather'][0]['description'] }}</td>
+			</tr>
+		{% endfor %}
 		
 	</table>
 	</div>

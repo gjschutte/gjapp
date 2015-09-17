@@ -5,6 +5,7 @@ import unittest
 from config import basedir
 from app import app, db
 from app.models import Spreuk, Domein
+from app.weather.weather_request import *
 
 class TestCase(unittest.TestCase):
 	def setUp(self):

@@ -8,6 +8,9 @@
 #
 
 import requests
+from datetime import datetime
+from time import strftime
+from pprint import pprint
 
 def calc_wind (wind_ms):
 	# Calculate beaufort value based on miles per second
@@ -41,18 +44,30 @@ def calc_wind_direction(degrees):
 					'North - Northwest']
 					
 	i = round(degrees / 22.5)
+	if (i == 16):
+		i = 15
+		
 	return wind_table[i]
 
 def make_rainfall (r):
 	# Determine rain or snow, add right text
-	if ('rain' in r):
+	if (('rain' in r) and ('1h' in r)):
 		text = str(r['rain']['1h']) + 'mm per hour'
-	elif ('snow' in r):
+	elif (('snow' in r) and ('1h' in r)):
 		text = str(r['snow']['1h']) + 'mm snow per hour'
 	else:
 		text = 'No rainfall'
 	
 	return text
+	
+def make_date (timestamp):
+	# Based on the timestamp, give the date
+	# Format: ddd, dd mon yyyy
+	fmt = "%a, %d %b %Y"
+	datum = datetime.fromtimestamp(timestamp)
+	datum = (datum.strftime(fmt))
+
+	return datum
 
 def req_weather ():
 	# call openweathermap
@@ -81,6 +96,31 @@ def req_weather ():
 	
 	return result
 
+def calc_average_per_day (result):
+	# calculate the averages per day
+	# return a new list with results
+	first = 'Y'
+	list_dates = []
+	for row in result['list']:
+		if (first == 'Y'):
+			w_day = {'date': row['dt_txt'][:10], 'max_temp' : row['main']['temp'], 'min_temp' : row['main']['temp']}
+			first = 'N'
+		
+		if (row['dt_txt'][:10] != w_day['date']):
+			#new day, save the data
+			list_dates.append (w_day)
+			w_day = {'date': row['dt_txt'][:10], 'max_temp' : row['main']['temp'], 'min_temp' : row['main']['temp']}
+		else :
+			if (row['main']['temp'] > w_day['max_temp']):
+				w_day['max_temp'] = row['main']['temp']
+			if (row['main']['temp'] < w_day['min_temp']):
+				w_day['min_temp'] = row['main']['temp']
+	
+	list_dates.append (w_day)
+	
+	return list_dates
+
+
 def req_forecast ():
 	# call openweathermap
 	url = 'http://api.openweathermap.org/data/2.5/forecast'
@@ -93,12 +133,46 @@ def req_forecast ():
 
 	r = requests.get(url=url, params=params)
 	result = r.json()
+	
+	# Calculate the averages per day
+	av_p_day = calc_average_per_day (result)
 
+	return (result, av_p_day)
+
+def req_longterm ():
+	# max 16 days forecast, totals per day
+	# call openweathermap
+	url = 'http://api.openweathermap.org/data/2.5/forecast/daily'
+
+	params = dict(
+		q='Apeldoorn',
+		APPID='e23b02c9fd9a90ccb44df46cb9af0757',
+		units='metric',
+		cnt='14'
+	)
+
+	r = requests.get(url=url, params=params)
+	result = r.json()
+	
+	# Change timestamp to readable date
+	# Round the min and max temperature
+	for row in result['list']:
+		date_txt = make_date(row['dt'])
+		row['date_txt'] = date_txt
+		
+		max_round = round(row['temp']['max'])
+		row['temp']['max_round'] = max_round
+		min_round = round(row['temp']['min'])
+		row['temp']['min_round'] = min_round
+
+		
 	return result
+	
 	
 def main():
 	
-	weer = req_weather()
+	result = req_longterm()
+	pprint (result)
 	
 	return 0
 
