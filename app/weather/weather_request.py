@@ -7,10 +7,11 @@
 #  05-07-2015
 #
 
-import requests
+import requests, pygal
 from datetime import datetime
 from time import strftime
 from pprint import pprint
+from pygal.style import DefaultStyle
 
 def calc_wind (wind_ms):
 	# Calculate beaufort value based on miles per second
@@ -60,10 +61,15 @@ def make_rainfall (r):
 	
 	return text
 	
-def make_date (timestamp):
+def make_date (timestamp, form):
 	# Based on the timestamp, give the date
-	# Format: ddd, dd mon yyyy
-	fmt = "%a, %d %b %Y"
+	# Format 1: ddd, dd mon yyyy
+	# Format 2: dd mm
+	if (form == 1):
+		fmt = "%a, %d %b %Y"
+	else:
+		fmt = "%e-%m"
+	
 	datum = datetime.fromtimestamp(timestamp)
 	datum = (datum.strftime(fmt))
 
@@ -157,7 +163,7 @@ def req_longterm ():
 	# Change timestamp to readable date
 	# Round the min and max temperature
 	for row in result['list']:
-		date_txt = make_date(row['dt'])
+		date_txt = make_date(row['dt'], 1)
 		row['date_txt'] = date_txt
 		
 		max_round = round(row['temp']['max'])
@@ -165,14 +171,63 @@ def req_longterm ():
 		min_round = round(row['temp']['min'])
 		row['temp']['min_round'] = min_round
 
+		# Calculate wind in beaufort
+		wind_kr = calc_wind(row['speed'])
+		row['beaufort'] = wind_kr
+
+		# Calculate wind direction
+		wind_dir = calc_wind_direction(row['deg'])
+		row['dir'] = wind_dir
 		
 	return result
 	
+def prep_chart (result):
+	list_dates = []
+	list_max = []
+	list_min = []
+	list_rain = []
+
+	for row in result['list']:
+		# Make this lists with dates, temperatures, rain
+		date_short = make_date(row['dt'], 2)
+		list_dates.append(date_short)
+		list_max.append(row['temp']['max'])
+		list_min.append(row['temp']['min'])
+		if ('rain' in row):
+			list_rain.append(row['rain'])
+		else :
+			list_rain.append(0)
+		
+	#create the temperature chart
+	title = '14-days temperature'
+	temp_chart = pygal.Line( fill = True,
+							width = 500, height = 400,
+							explicit_size=True,
+							title = title,
+							style=DefaultStyle,
+							disable_xml_declaration=True)
+	temp_chart.x_labels = list_dates
+	temp_chart.add('Maximum', list_max)
+	temp_chart.add('Minimum', list_min)
+	
+	# create the rain chart
+	title = 'Rain (mm per day)'
+	rain_chart = pygal.Bar( fill = True,
+							width = 500, height = 400,
+							explicit_size = True,
+							title = title,
+							style = DefaultStyle,
+							disable_xml_declaration = True)
+	rain_chart.x_labels = list_dates
+	rain_chart.add('Rain', list_rain)
+	
+	return (temp_chart, rain_chart)
 	
 def main():
 	
 	result = req_longterm()
-	pprint (result)
+	bar_char = prep_chart(result)
+#	pprint (result)
 	
 	return 0
 

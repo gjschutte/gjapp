@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, session, url_for, reques
 from app import db
 from app.models import Spreuk, Domein
 from flask.ext import menu
-from .weather_request import req_weather, req_longterm
+from .weather_request import req_weather, req_longterm, prep_chart
 
 mod = Blueprint(
 			'weather', 
@@ -31,7 +31,12 @@ def weather():
 def forecast():
 	#get the weather forecast
 	w_forecast = req_longterm ()
+	
+	# Prepare the chart
+	temp_chart, rain_chart = prep_chart(w_forecast)
 
 	return render_template('forecast.html',
 							title='Weather forecast',
-							w_forecast = w_forecast)
+							w_forecast = w_forecast,
+							temp_chart = temp_chart,
+							rain_chart = rain_chart)

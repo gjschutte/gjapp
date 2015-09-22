@@ -11,7 +11,7 @@ class Domein (db.Model):
 
 class Spreuk(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	body = db.Column(db.String(140))
+	body = db.Column(db.String(250))
 	auteur = db.Column(db.String(32))
 	domein_id = db.Column(db.Integer, db.ForeignKey('domein.id'))
 	

@@ -16,7 +16,7 @@ class TestCase(unittest.TestCase):
 		
 	def test_req_weather(self):
 		result = req_weather()
-		self.assertEqual(result['name'], 'Apeld0orn')
+		self.assertEqual(result['name'], 'Apeldoorn')
 		
 		
 if __name__ == '__main__':

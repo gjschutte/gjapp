@@ -19,7 +19,7 @@ def beheer():
 		spreuk = Spreuk(body=form.body.data, auteur=form.auteur.data, domain=form.soort.data)
 		db.session.add(spreuk)
 		db.session.commit()
-		return redirect(url_for('beheer'))
+		return redirect(url_for('beheer.beheer'))
 	spreuken = Spreuk.query.all()
 	return render_template('beheer.html', form=form, spreuken=spreuken)
 

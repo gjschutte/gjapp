@@ -39,7 +39,7 @@ nav ul li {
 
 /* Create a style for the first level items */
 nav > ul > li > a {
-	color: #aaa;
+	color: #000000;
 	background-color: #FF0;
 	display: block;
 	line-height: 2em;
