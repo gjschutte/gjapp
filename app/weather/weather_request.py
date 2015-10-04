@@ -65,10 +65,18 @@ def make_date (timestamp, form):
 	# Based on the timestamp, give the date
 	# Format 1: ddd, dd mon yyyy
 	# Format 2: dd mm
+	# Format 3: hh
+	# Format 4: ddd
 	if (form == 1):
 		fmt = "%a, %d %b %Y"
 	else:
-		fmt = "%e-%m"
+		if (form == 2):
+			fmt = "%e-%m"
+		else:
+			if (form == 3):
+				fmt = "%H"
+			else:
+				fmt = "%a"
 	
 	datum = datetime.fromtimestamp(timestamp)
 	datum = (datum.strftime(fmt))
@@ -80,7 +88,9 @@ def req_weather ():
 	url = 'http://api.openweathermap.org/data/2.5/weather'
 
 	params = dict(
-		q='Apeldoorn',
+		#q='Apeldoorn',
+		lat='52.367',
+		lon='4.9',
 		APPID='e23b02c9fd9a90ccb44df46cb9af0757',
 		units='metric'
 	)
@@ -126,9 +136,8 @@ def calc_average_per_day (result):
 	
 	return list_dates
 
-
-def req_forecast ():
-	# call openweathermap
+def req_5days ():
+	# call openweathermap, 5 days-3 hours forecast
 	url = 'http://api.openweathermap.org/data/2.5/forecast'
 
 	params = dict(
@@ -140,10 +149,60 @@ def req_forecast ():
 	r = requests.get(url=url, params=params)
 	result = r.json()
 	
-	# Calculate the averages per day
-	av_p_day = calc_average_per_day (result)
+	return result
 
-	return (result, av_p_day)
+def prep_chart_5d (result) :
+	list_times = []
+	list_temp = []
+	list_rain = []
+	last_date = ''
+
+	for row in result['list']:
+		# Make this lists with times, temperatures, rain
+		date_short = make_date(row['dt'], 4)
+		if (date_short != last_date):
+			list_times.append(date_short)
+			last_date = date_short
+		else :
+			list_times.append('')
+		list_temp.append(row['main']['temp'])
+		if ('rain' in row):
+			try:
+				list_rain.append(row['rain']['3h'])
+			except:
+				list_rain.append(0)
+		else :
+			list_rain.append(0)
+		
+	#create the temperature chart
+	title = 'Temperature: 5 days forecast'
+	temp_chart = pygal.Line( fill = True,
+							width = 700, height = 400,
+							x_label_rotation = 45,
+							# x_labels_major_count = 3,
+							# show_minor_x_labels=False,
+							explicit_size=True,
+							title = title,
+							x_title = 'Time',
+							style=DefaultStyle,
+							disable_xml_declaration=True)
+	temp_chart.x_labels = list_times
+	temp_chart.add('Temperature', list_temp)
+	
+	# create the rain chart
+	title = 'Rainfall: 5 days forecast, mm rain per 3 hours'
+	rain_chart = pygal.Bar( fill = True,
+							width = 700, height = 400,
+							explicit_size = True,
+							title = title,
+							x_title = 'Time',
+							style = DefaultStyle,
+							disable_xml_declaration = True)
+	rain_chart.x_labels = list_times
+	rain_chart.add('Rain', list_rain)
+	
+	return (temp_chart, rain_chart)
+	
 
 def req_longterm ():
 	# max 16 days forecast, totals per day
@@ -225,9 +284,9 @@ def prep_chart (result):
 	
 def main():
 	
-	result = req_longterm()
-	bar_char = prep_chart(result)
-#	pprint (result)
+	result = req_5days()
+#	bar_char = prep_chart(result)
+	pprint (result)
 	
 	return 0
 
