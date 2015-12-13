@@ -17,6 +17,8 @@ from app.beheer.views import mod as beheerModule
 from app.weather.views import mod as weatherModule
 from app.weather.views import mod2 as forecastModule
 from app.weather.views import mod3 as daysModule
+from app.games.views import mod as gamesModule
+from app.games.views import mod2 as mathModule
 
 if not app.debug and os.environ.get('HEROKU') is None:
 	import logging
@@ -44,3 +46,5 @@ app.register_blueprint(beheerModule)
 app.register_blueprint(weatherModule)
 app.register_blueprint(forecastModule)
 app.register_blueprint(daysModule)
+app.register_blueprint(gamesModule)
+app.register_blueprint(mathModule)

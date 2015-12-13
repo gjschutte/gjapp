@@ -83,20 +83,21 @@ def make_date (timestamp, form):
 
 	return datum
 
-def req_weather ():
+def req_weather (latitude, longitude):
 	# call openweathermap
 	url = 'http://api.openweathermap.org/data/2.5/weather'
 
 	params = dict(
 		#q='Apeldoorn',
-		lat='52.367',
-		lon='4.9',
+		lat=latitude,
+		lon=longitude,
 		APPID='e23b02c9fd9a90ccb44df46cb9af0757',
 		units='metric'
 	)
 
 	r = requests.get(url=url, params=params)
 	result = r.json()
+
 
 	# Calculate wind in beaufort
 	wind_kr = calc_wind(result['wind']['speed'])
@@ -136,12 +137,14 @@ def calc_average_per_day (result):
 	
 	return list_dates
 
-def req_5days ():
+def req_5days (latitude, longitude):
 	# call openweathermap, 5 days-3 hours forecast
 	url = 'http://api.openweathermap.org/data/2.5/forecast'
 
 	params = dict(
-		q='Apeldoorn',
+		# q='Apeldoorn',
+		lat = latitude,
+		lon = longitude,
 		APPID='e23b02c9fd9a90ccb44df46cb9af0757',
 		units='metric'
 	)
@@ -204,13 +207,15 @@ def prep_chart_5d (result) :
 	return (temp_chart, rain_chart)
 	
 
-def req_longterm ():
+def req_longterm (latitude, longitude):
 	# max 16 days forecast, totals per day
 	# call openweathermap
 	url = 'http://api.openweathermap.org/data/2.5/forecast/daily'
 
 	params = dict(
-		q='Apeldoorn',
+		# q='Apeldoorn',
+		lat = latitude, 
+		lon = longitude,
 		APPID='e23b02c9fd9a90ccb44df46cb9af0757',
 		units='metric',
 		cnt='14'

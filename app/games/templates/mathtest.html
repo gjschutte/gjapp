@@ -1,0 +1,56 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block scripts %}
+	<script src="/static/js/reken.js">
+	</script>
+{% endblock %}
+
+
+{% block content %}
+	<div id="box_left"></div>
+	<div id="box_right">
+
+	<h1>Math test</h1>
+	<center>
+	<form name="quizform">
+	<input type="button" value="Add" onClick="showSum(1)">
+	<input type="button" value="Subtract" onClick="showSum(2)">
+	<input type="button" value="Multiply" onClick="showSum(3)">
+	<input type="button" value="Divide" onClick="showSum(4)">
+	<br>
+	<br>
+	<input type="radio" name="level">Easy
+	<input type="radio" name="level" checked>Moderate
+	<input type="radio" name="level">Difficult
+	<br>
+	<br>
+	<table>
+		<tr>
+			<td>
+				<p id = "ex1"></p>
+				<p id = "ex2"></p>
+			</td>
+			<td>
+				<input type="button" value="Reset Score">
+			</td>
+	</table>
+	</form>
+	<br>
+	<br>
+	<p id = "task"></p>
+
+	<br>
+	Outcome: 
+	<input id = "outcome" type = "text" name = "outcome" autocomplete = "off">
+	<button type = "button" onclick = "checkResult ();">Calculate</button>
+	<br>
+	<br>
+	<p id = "reslt"></p>
+	<p id = "answer"></p>
+
+	</center>
+
+	</div>
+{% endblock %}
+
