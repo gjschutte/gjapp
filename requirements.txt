@@ -7,6 +7,8 @@ Flask-SQLAlchemy==2.0
 Flask-WhooshAlchemy==0.56
 Flask-WTF==0.10.3
 flipflop==1.0
+geocoder==1.6.4
+geopy==1.11.0
 gunicorn==19.3.0
 itsdangerous
 Jinja2==2.7.3
