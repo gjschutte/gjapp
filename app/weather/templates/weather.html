@@ -2,10 +2,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div id="box_left">
+	<!-- side menu -->
+	<div class="col-sm-3  col-md-2 sidebar">
 		{% include 'weather_menu.html' %}
 	</div>
-	<div id="box_right">
+	
+	<!-- main content -->	
+	<div class="col-sm-9 col-md-10">
 	{% with messages = get_flashed_messages() %}
 	{% if messages %}
 	<ul>
@@ -20,39 +23,45 @@
 	<br>
 	{% include 'location.html' %}
 	<br>
-	<table>
-		<tr>
-			<td>Place</td>
-			<td>{{ w_forecast['name'] }}</td>
-		</tr>
-		<tr>
-			<td>Temperature</td>
-			<td>{{ w_forecast['main']['temp'] }} </td>
-		<tr>
-			<td>Description</td>
-			<td>
-				{% set pic_url = 'http://openweathermap.org/img/w/' + w_forecast['weather'][0]['icon'] + '.png' %}
-				<img src="{{ pic_url }}"> {{ w_forecast['weather'][0]['description'] }}
-			</td>
-		</tr>
-		<tr>
-			<td>Wind</td>
-			<td>{{ w_forecast['wind']['beaufort'] }} bft, 
-				{{ w_forecast['wind']['dir'] }}</td>
-		</tr>
-		<tr>
-			<td>Humidity</td>
-			<td>{{ w_forecast['main']['humidity'] }}%</td>
-		</tr>
-		<tr>
-			<td>Pressure</td>
-			<td>{{ w_forecast['main']['pressure'] }}</td>
-		</tr>
-		<tr>
-			<td>Rainfall</td>
-			<td> {{ w_forecast['rainfall'] }} </td>
-		</tr>
-		
-	</table>
+
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Place</th>
+					<th>{{ w_forecast['name'] }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Temperature</td>
+					<td>{{ w_forecast['main']['temp'] }} </td>
+				<tr>
+					<td>Description</td>
+					<td>
+						{% set pic_url = 'http://openweathermap.org/img/w/' + w_forecast['weather'][0]['icon'] + '.png' %}
+						<img src="{{ pic_url }}"> {{ w_forecast['weather'][0]['description'] }}
+					</td>
+				</tr>
+				<tr>
+					<td>Wind</td>
+					<td>{{ w_forecast['wind']['beaufort'] }} bft, 
+						{{ w_forecast['wind']['dir'] }}</td>
+				</tr>
+				<tr>
+					<td>Humidity</td>
+					<td>{{ w_forecast['main']['humidity'] }}%</td>
+				</tr>
+				<tr>
+					<td>Pressure</td>
+					<td>{{ w_forecast['main']['pressure'] }}</td>
+				</tr>
+				<tr>
+					<td>Rainfall</td>
+					<td> {{ w_forecast['rainfall'] }} </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	</div>
 {% endblock %}

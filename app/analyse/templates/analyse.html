@@ -4,29 +4,39 @@
 {% block content %}
 	<div id="box_left"></div>
 	<div id="box_right">
-	<h1>Gegevens computer</h1>
+	<h1>Client information</h1>
 	<p>
-	<table>
-		<tr>
-			<td>Browser:</td>
-			<td>{{ user_agent.browser.family }}, version {{ user_agent.browser.version_string }}</td>
-		</tr>
-		<tr>
-			<td>Operating system:</td>
-			<td>{{ user_agent.os.family }}, version {{ user_agent.os.version_string }}</td>
-		</tr>
-		<tr>
-			<td>Device:</td>
-			<td>{{ user_agent.device.family }}</td>
-		</tr>
-		<tr>
-			<td>Screen:</td>
-			<td><p id="screenSize"></p></td>
-		</tr>
-	</table>
+		
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Browser:</td>
+					<td>{{ user_agent.browser.family }}, version {{ user_agent.browser.version_string }}</td>
+				</tr>
+				<tr>
+					<td>Operating system:</td>
+					<td>{{ user_agent.os.family }}, version {{ user_agent.os.version_string }}</td>
+				</tr>
+				<tr>
+					<td>Device:</td>
+					<td>{{ user_agent.device.family }}</td>
+				</tr>
+				<tr>
+					<td>Screen:</td>
+					<td><p id="screenSize"></p></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-{% endblock %}
-
+	</div>
+		
 <script src="client_dect.js">
 	function fill_screen_size() {
 		document.getElementById("screenSize").innerHTML = screenSize (window);
@@ -35,3 +45,4 @@
 	windows.onload = fill_screen_size ()
 </script>
 
+{% endblock %}

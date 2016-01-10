@@ -1,13 +1,22 @@
-	<form action="" method="post" name="city">
+	<form class="form-horizontal" action="" method="post" name="city">
 		{{ form.hidden_tag() }}
-		<table>
-			<tr>
-				<td>Select city: </td>
-				<td>{{ form.City(maxlenght=50) }}</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Search"></td>
-			</tr>
-		</table>
-	</form>
 
+		<div class="heading">
+			<h3 class="form-heading">Select city</h3>
+		</div>
+
+		<div class="form-group {% if form.City.errors %} has-error {% endif %}">
+			{{ form.City.label(class="col-sm-2") }}
+			<div class="col-sm-6">
+				{{ form.City (class="form-control") }}
+			</div>
+			<p class="col-sm-4 help-block">
+			{{ form.City.errors[0] }}
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary">Search</button>
+			</div>
+		</div>
+	</form>

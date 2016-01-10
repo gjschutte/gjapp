@@ -4,9 +4,20 @@
 {% block content %}
 	<div id="box_left"></div>
 	<div id="box_right">
-	<h1>Hi, welcome</h1>
-	<p>
-	{{ spreuk.body }} - {{ spreuk.auteur }}
-	</p>
+		<center>
+		<h1>Quote of the day:</h1>
+		<p>
+		{{ spreuk.body }} - {{ spreuk.auteur }}
+		</p>
+		</center>
+		<hr>
+		This site is built in order to test different programming techniques
+		and languages. Some of the techniques used:
+		<ul style="list-style-type:circle">
+			<li>Python, Flask, SQLAlchemy;</li>
+			<li>JSON;</li>
+			<li>Javascript;</li>
+			<li>Bootstrap.</li>
+		</ul>
 	</div>
 {% endblock %}

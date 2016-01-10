@@ -7,7 +7,12 @@
 	<h1>Choose a game</h1>
 	<p>
 	<br>
-	<a href =" {{url_for ('mathtest.mathtest') }}">Math test</a>
+	<div class="row">
+		<div class="col-sm-4">
+			<h4><a href =" {{url_for ('mathtest.mathtest') }}">Math test</a> </h4>
+		</div>
+	</div>
+	<!-- three colums, add br for new line -->
 	
 	</div>
 {% endblock %}

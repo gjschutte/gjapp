@@ -6,26 +6,28 @@
 	<script type="text/javascript" scr="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
 	<script type="text/javascript" scr="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
 
-	<div id="box_left">
+	<!-- side menu -->
+	<div class="col-sm-3  col-md-2 sidebar">
 		{% include 'weather_menu.html' %}
 	</div>
-	<div id="box_right">
+
+	<!-- main content -->	
+	<div class="col-sm-9 col-md-10">
 	<h1>5-days weather forecast</h1>
 	<p>
 	<br>
 	{% include 'location.html' %}
 	<br>
-	<table>
-		<tr>
-			<td>Place</td>
-			<td>{{ w_forecast['city']['name'] }}</td>
-		</tr>
-	</table>
+
+	<h3>
+		Place: {{ w_forecast['city']['name'] }}
+	</h3>
 	
 	<!-- generate the temperature chart -->
 	{{ temp_chart.render()|safe }}
 	
 	<!-- generate the rain chart -->
 	{{ rain_chart.render()|safe }}
+	</div>
 	</div>
 {% endblock %}

@@ -6,50 +6,59 @@
 	<script type="text/javascript" scr="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
 	<script type="text/javascript" scr="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
 
-	<div id="box_left">
+	<!-- side menu -->
+	<div class="col-sm-3  col-md-2 sidebar">
 		{% include 'weather_menu.html' %}
 	</div>
-	<div id="box_right">
+
+	<!-- main content -->	
+	<div class="col-sm-9 col-md-10">
 	<h1>14-days weather forecast</h1>
 	<p>
 	<br>
 	{% include 'location.html' %}
 	<br>
-	<table>
-		<tr>
-			<td>Place</td>
-			<td>{{ w_forecast['city']['name'] }}</td>
-		</tr>
-		<br>
-		<tr>
-			<td>Date</td>
-			<td>Minimum</td>
-			<td>Maximum</td>
-			<td>Speed</td>
-			<td>Direction</td>
-		</tr>
-		{% for line in w_forecast['list'] %}
-			<tr>
-				<td>{{ line['date_txt'] }}</td>
-				<td><center>{{ line['temp']['min_round'] }}</center></td>
-				<td><center>{{ line['temp']['max_round'] }}</center></td>
-				<td>
-					{% set pic_url = 'http://openweathermap.org/img/w/' + 
-					line['weather'][0]['icon'] + '.png' %}
-					<img src="{{ pic_url }}"> 
-				</td>
-				<td>{{ line['weather'][0]['description'] }}</td>
-				<td><center>{{ line['beaufort'] }}</center></td>
-				<td><center>{{ line['dir'] }}</center></td>
-			</tr>
-		{% endfor %}
-		
-	</table>
+	
+	<h3>
+		Place: {{ w_forecast['city']['name'] }}
+	</h3>
+	
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Minimum</th>
+					<th>Maximum</th>
+					<th>Speed</th>
+					<th>Direction</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for line in w_forecast['list'] %}
+					<tr>
+						<td>{{ line['date_txt'] }}</td>
+						<td><center>{{ line['temp']['min_round'] }}</center></td>
+						<td><center>{{ line['temp']['max_round'] }}</center></td>
+						<td>
+							{% set pic_url = 'http://openweathermap.org/img/w/' + 
+							line['weather'][0]['icon'] + '.png' %}
+							<img src="{{ pic_url }}"> 
+						</td>
+						<td>{{ line['weather'][0]['description'] }}</td>
+						<td><center>{{ line['beaufort'] }}</center></td>
+						<td><center>{{ line['dir'] }}</center></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 	
 	<!-- generate the temperature chart -->
 	{{ temp_chart.render()|safe }}
 	
 	<!-- generate the rain chart -->
 	{{ rain_chart.render()|safe }}
+	</div>
 	</div>
 {% endblock %}
