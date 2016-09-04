@@ -1,0 +1,37 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<!-- main content -->	
+	<h1>Twitter info</h1>
+	<p>
+	<br>
+	{% include 'search.html' %}
+	<br>
+
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Tweet</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for tw_status in twitter_info['statuses'] %}
+				<tr>
+					<td>
+						<img src="{{ tw_status['user']['profile_image_url_https']|safe }}">
+						{{ tw_status['user']['name'] }}, {{ tw_status['date_text'] }} <br>
+						{{ tw_status['text_html']|safe }} <br>
+						{{ tw_status['entities']['url'] }}
+						<hr>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	
+
+{% endblock %}
