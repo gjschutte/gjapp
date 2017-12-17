@@ -41,8 +41,8 @@ def weather():
 			
 	if 'city' not in session:
 		# No place defined yet, get default place by IP
-		place = get_location_by_ip()
-		form.City.data = place
+		place = "Amsterdam" 
+		form.City.data = "Amsterdam" 
 		# get the long and lat for the location
 		location, latitude, longitude = check_location(form.City.data)
 		session['city'] = location

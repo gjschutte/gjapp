@@ -9,10 +9,36 @@
 	<br>
 	<div class="row">
 		<div class="col-sm-4">
+			<a href =" {{url_for ('mathtest.mathtest') }}">
+			<img src=" {{url_for ('mathtest.static', filename='mathtest/math.png') }}" width="80" height="100" border="0">
 			<h4><a href =" {{url_for ('mathtest.mathtest') }}">Math test</a> </h4>
+		</div>
+		<div class="col-sm-4">
+			<a href =" {{url_for ('calculator.calculator') }}">
+			<img src=" {{url_for ('calculator.static', filename='calculator/calculator.png') }}" width="80" height="100" border="0">
+			<h4><a href =" {{url_for ('calculator.calculator') }}">Calculator</a> </h4>
+		</div>
+		<div class="col-sm-4">
+			<a href =" {{url_for ('simon.simon') }}">
+			<img src=" {{url_for ('simon.static', filename='simon/simon.jpeg') }}" width="80" height="100" border="0">
+			<h4><a href =" {{url_for ('simon.simon') }}">Simon</a> </h4>
+			</a>
 		</div>
 	</div>
 	<!-- three colums, add br for new line -->
+	<br>
+	<div class="row">
+		<div class="col-sm-4">
+			<a href =" {{url_for ('tictacto.tictacto') }}">
+			<img src=" {{url_for ('tictacto.static', filename='tictacto/tictacto.jpg') }}" width="80" height="100" border="0">
+			<h4><a href =" {{url_for ('tictacto.tictacto') }}">Tictacto</a> </h4>
+		</div>
+		<div class="col-sm-4">
+			<a href =" {{url_for ('pomodoro.pomodoro') }}">
+			<img src=" {{url_for ('pomodoro.static', filename='pomodoro/pomodoro.png') }}" width="80" height="100" border="0">
+			<h4><a href =" {{url_for ('pomodoro.pomodoro') }}">Pomodoro</a> </h4>
+		</div>
+	</div>
 	
 	</div>
 {% endblock %}

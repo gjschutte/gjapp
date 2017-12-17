@@ -1,0 +1,33 @@
+
+body {
+	background-color: SeaShell !important;
+  	font-family: 'Roboto', sans-serif;
+}
+
+#game {
+	text-align: center;
+}
+
+#board {
+	width: 246px;
+	height: 300px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.cell {
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	line-height: 80px;
+	margin: -3px;
+	border: 2px solid black;
+	text-align: center;
+	background-color: lightgreen;
+	font-size: 50px;
+	font-family: 'Permanent Marker';
+}
+
+.cell:winner {
+	color: blue;
+}

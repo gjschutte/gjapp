@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Simon Game</title>
+	<link rel="stylesheet" href="simon.css" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+ 	<!-- jQuery library -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 
+	<script src="simon.js"></script>
+</head>
+<body>
+<div class="game">
+
+	<div class ="controller">
+    	<p class="title" id="gameTitle">Simon</p>
+      	<div class="counter"><h3 id="gameCounter">--</h3> </div>
+      	<button class="start" id="startGame">Start Game</button>
+
+    	<div>
+      		<label class="switch" id="switchLeft">
+	        	<input type="checkbox">
+    	    	<div class="slider sliderLeft round"></div>
+      		</label>
+
+      		<label class="switch" id="switchRight">
+	        	<input type="checkbox">
+    	    	<div class="slider sliderRight round"></div>
+      		</label>
+    	</div>
+
+    	<div class="labels">
+      		<p><span class="onOff">On/Off</span>
+      		<span class="strict">Strict Mode</span></p>
+    	</div>
+
+	</div>
+
+	<div class="row">
+		<div class="container green" id="green"></div>
+		<div class="container red" id="red"></div>
+	</div>
+	<div class="row">
+		<div class="container yellow" id="yellow"></div>
+		<div class="container blue" id="blue"></div>
+	</div>
+</div>
+
+</body>
+</html>

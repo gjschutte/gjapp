@@ -1,0 +1,42 @@
+
+body {
+	background-color: SeaShell !important;
+  	font-family: 'Roboto', sans-serif;
+}
+
+.counterContainer {
+	width: 200px;
+	height: 200px;
+	margin: auto;
+	display: table;
+	text-align: center;
+	border: 6px solid green;
+	border-radius: 50%;
+}
+
+#counter {
+	display: table-cell;
+	vertical-align: middle;
+	font-family: 'Black Ops One', sans-serif;
+	color: green;
+	font-size: 36px;
+}
+
+#totalTime {
+	font-family: 'Black Ops One', sans-serif;
+	color: green;
+	font-size: 24px;
+}
+
+#relaxTime {
+	font-family: 'Black Ops One', sans-serif;
+	color: green;
+	font-size: 24px;
+}
+
+#statusText {
+	font-family: 'Black Ops One', sans-serif;
+	font-size: 36px;
+	color: green;
+}
+

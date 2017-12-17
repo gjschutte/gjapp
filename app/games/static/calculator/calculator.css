@@ -1,0 +1,77 @@
+
+body {
+	background-color: SeaShell !important;
+  	font-family: 'Roboto', sans-serif;
+}
+
+
+#calculator {
+	margin-top: 10%;
+	margin-right: auto;
+	margin-left: auto;
+	height: 450px;
+	width: 300px;
+	padding-top: 10px;
+	background-color: purple;
+	border-radius: 20px;
+  	border: 2px solid #908b85;
+	box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68), inset -1px -6px 12px 0.1px #89847e;
+
+}
+
+
+#resultbox {
+	width: 85%;
+	height: 65px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: LightGreen;
+}
+
+#entry {
+	margin-right: 10px;
+	text-align: right;
+	font-size: 32px;
+}
+
+#totalInput {
+  	position: relative;
+  	height: 10px;
+  	bottom: 25px;
+	margin-right: 10px;
+	text-align: right;
+	font-size: 14px;
+}
+
+#buttons {
+	font-size: 16px;
+	width: 280px;
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+button {
+	height: 40px;
+	width: 50px;
+	margin-top: 10px;
+	margin-left: 10px;
+	font-weight: bold;
+	border-radius: 10px;
+	box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #515151;
+}
+
+button:active {
+  	transform: translate(0px, 3px);
+  	box-shadow: none;
+}
+
+#equalbutton {
+	position: absolute;
+	height: 90px;
+	margin-top: -40px;
+}
+
+#zerobutton {
+	width: 117px;
+}

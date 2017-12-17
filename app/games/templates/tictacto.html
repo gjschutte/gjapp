@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Calculator</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+ 	<!-- jQuery library -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 
+	<link rel="stylesheet" href="{{ url_for('tictacto.static', filename='tictacto/tictacto.css') }}" />
+	<script src="{{ url_for('tictacto.static', filename='tictacto/tictacto.js') }}"></script>
+
+</head>
+<body>
+<div class="container">
+	<div id="game">
+		<div id="header">
+			<h1>Tic Tac To</h1>
+		</div>
+		<div id="board">
+			<div id="b0" class="cell">&nbsp</div>
+			<div id="b1" class="cell">&nbsp</div>
+			<div id="b2" class="cell">&nbsp</div>
+			<div id="b3" class="cell">&nbsp</div>
+			<div id="b4" class="cell">&nbsp</div>
+			<div id="b5" class="cell">&nbsp</div>
+			<div id="b6" class="cell">&nbsp</div>
+			<div id="b7" class="cell">&nbsp</div>
+			<div id="b8" class="cell">&nbsp</div>
+		</div>
+		<div id="menu">
+			<input name="player" id="p1" type="radio" value="X" checked>
+			<label for="p1">Play X</label>
+			<input name="player" id="p2" type="radio" value="O">
+			<label for="p2"> Play O</label> 
+			<br>
+			<input name="level" id="easy" type="radio" value="Easy" checked>
+			<label for="p1">Easy</label>
+			<input name="level" id="hard" type="radio" value="Hard">
+			<label for="p2">Hard</label> 
+			<br>
+			<input name="gametype" id="gt1" type="radio" value="computer" checked>
+			<label for="gt1">Player vs Computer</label>
+			<input name="gametype" id="gt2" type="radio" value="player">
+			<label for="gt2">Player vs Player</label>
+			<br>
+			<button id="reset">New Game</button>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

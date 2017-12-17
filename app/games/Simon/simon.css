@@ -1,0 +1,240 @@
+
+body {
+	background-color: SeaShell !important;
+  	font-family: 'Roboto', sans-serif;
+}
+
+.game {
+	margin-top: 50px;
+}
+
+.title {
+  font-size: 45px;
+  font-family: 'Comfortaa', cursive;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.controller {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgb(180,180,180);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 195px;
+  border: 20px solid rgb(40,40,40);
+  text-align: center;
+}
+
+.row {
+  width: 580px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.container {
+  width: 250px;
+  height: 250px;
+}
+
+.green {
+    border-top: 25px solid rgb(40,40,40);
+    border-left: 25px solid rgb(40,40,40);
+    border-right: 12.5px solid rgb(40,40,40);
+    border-bottom: 12.5px solid rgb(40,40,40);  
+    border-top-left-radius: 100%;
+    background: rgb(0,168,69);
+}
+.red {
+    border-top: 25px solid rgb(40,40,40);
+    border-left: 12.5px solid rgb(40,40,40);
+    border-right: 25px solid rgb(40,40,40);
+    border-bottom: 12.5px solid rgb(40,40,40);  
+    border-top-right-radius: 100%;
+    background: rgb(161,11,15);
+}
+.yellow {
+    border-top: 12.5px solid rgb(40,40,40);
+    border-left: 25px solid rgb(40,40,40);
+    border-right: 12.5px solid rgb(40,40,40);
+    border-bottom: 25px solid rgb(40,40,40);  
+    border-bottom-left-radius: 100%;
+    background: rgb(205,168,0);
+}
+.blue {
+    border-top: 12.5px solid rgb(40,40,40);
+    border-left: 12.5px solid rgb(40,40,40);
+    border-right: 25px solid rgb(40,40,40);
+    border-bottom: 25px solid rgb(40,40,40);  
+    border-bottom-right-radius: 100%;
+    background: rgb(1,72,145);
+}
+
+#green:hover, #red:hover, #blue:hover, #yellow:hover {
+  cursor: pointer;
+}
+
+.clickedGreen {
+  background: rgb(53, 239, 85);
+}
+.clickedRed {
+  background: rgb(253, 35, 51);
+}
+.clickedYellow {
+  background: rgb(255, 230, 64);
+}
+.clickedBlue {
+  background: rgb(28, 138, 244);
+}
+
+.greenWinner {
+  background: rgb(255, 212, 37);
+}
+.redWinner {
+  background: rgb(255, 212, 37);
+}
+.yellowWinner {
+  background: rgb(255, 212, 37);
+}
+.blueWinner {
+  background: rgb(255, 212, 37);
+}
+
+.greenLoser {
+  background: rgb(128, 128, 128);
+}
+.redLoser {
+  background: rgb(128, 128, 128);
+}
+.yellowLoser {
+  background: rgb(128, 128, 128);
+}
+.blueLoser {
+  background: rgb(128, 128, 128);
+}
+
+.counter {
+	width: 50px;
+	height: 40px;
+	background: rgb(0, 0, 49);
+	border: 3px solid rgb(250, 0, 0);
+	margin: auto auto 5px auto;
+	border-radius: 15%;
+}
+
+#gameCounter {
+	padding-top: -5px;
+  margin-top: 10px;
+	font-size: 20px;
+	color: rgb(250, 0, 0);
+}
+
+.start {
+  font-size: 25px;
+  font-family: 'Comfortaa', cursive;
+  border-radius: 25px;
+  border: none;
+  background: rgb(225,225,225);
+  margin-top: 2.5px;
+  margin-bottom: 7.5px;
+  padding: 7.5px;
+}
+#startGame {
+    color: rgb(200,200,200);
+}
+.start:hover {
+  cursor: pointer;
+  background: rgb(114, 144, 255);
+}
+button:focus {
+  outline: none;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+#switchLeft {
+  margin-right: 5px;
+}
+#switchRight {
+  margin-left: 5px;
+}
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .sliderLeft {
+  background-color: #2196F3;
+}
+
+input:focus + .sliderLeft {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .sliderRight {
+  background-color: red;
+}
+
+input:focus + .sliderRight {
+  box-shadow: 0 0 1px red;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.labels {
+  margin-top: -15px;
+  padding: 0;
+  font-size: 13px;
+
+}
+.onOff {
+  margin-right: -5px;
+  margin-left: 10px;
+}
+.strict {
+  margin-left: 30px;
+}
+

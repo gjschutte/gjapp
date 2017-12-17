@@ -22,12 +22,15 @@ def check_location(place):
 	
 def get_location_by_ip():
 	# Determine location based on the ip address
+	# Not working!!!
 	
 	place = geocoder.ip('me')
-	result = geocoder.reverse(place.latlng)
-	result = result.json
+	print (place)
+	#result = geocoder.reverse(place.latlng)
+	#result = result.json
+	# print (result)
 	
-	return result['city']
+	return "Apeldoorn" 
 
 def main():
 	
